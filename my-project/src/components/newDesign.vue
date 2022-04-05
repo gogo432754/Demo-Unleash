@@ -1,8 +1,8 @@
 <template>
   <div class="container justify-content-center align-items-center">
-    <img id="img" class="image" src="@/assets/cat.jpg" />
-    <p-card class="card flex flex-column align-items-center w-3 h-23rem">
-      <template #title> Login Unleash-demo </template>
+    <img id="img" class="image" src="@/assets/tech.jpg" />
+    <p-card class="card flex flex-column align-items-center w-3 h-27rem">
+      <template #title> new design Unleash-demo </template>
       <template #content>
         <toast />
         <div class="field flex flex-column">
@@ -32,14 +32,20 @@
             >Enter your password.</small
           >
         </div>
-        <div class="flex">
+        <div class="flex mb-3">
           <p-button
-            @click="showInfo"
+            @click="showdanger"
             class="mr-2 p-button-info"
             label="Forgot my passord"
           />
           <p-button @click="showSuccess" label="Log in" />
         </div>
+        <p-button
+          class="align-self-start flex"
+          label="Login using Google services"
+          icon="pi pi-google"
+          @click="showInfo"
+        />
       </template>
     </p-card>
   </div>
@@ -47,7 +53,7 @@
 
 <script>
 export default {
-  name: "OldDesign",
+  name: "NewDesign",
   data() {
     return {
       pass: "",
@@ -62,11 +68,19 @@ export default {
         life: 3000,
       });
     },
-    showInfo() {
+    showdanger() {
       this.$toast.add({
         severity: "error",
         summary: "Forget my password",
         detail: "This functionality is not implemented",
+        life: 3000,
+      });
+    },
+    showInfo() {
+      this.$toast.add({
+        severity: "info",
+        summary: "Info Message",
+        detail: "Google services are not available",
         life: 3000,
       });
     },
