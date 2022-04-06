@@ -26,22 +26,27 @@ export default {
     };
   },
   methods: {
-    checkFlag: async() =>{
+    checkFlag: async () => {
       const unleash = new UnleashClient({
-      url: "http://localhost:3000/proxy",
-      clientKey: "some-secret",
-      refreshInterval: 5,
-      appName: "demo-unleash",
-      environment: "dev",
-    });
-    await unleash.start().then(()=>{
-       this.showNewDesign = unleash.isEnabled('new-design')
-       })
+        url: "http://localhost:3000/proxy",
+        clientKey: "some-secret",
+        refreshInterval: 2,
+        appName: "demo-unleash",
+        environment: "dev",
+      });
+      unleash.updateContext({ userId: 4 });
+      await unleash.start().then(() => {
+        return unleash.getAllToggles();
+      });
 
-    }
+      return unleash.isEnabled("new-design");
+    },
   },
-  beforeMount:  async () => {
-     await this.checkFlag();
+
+  mounted() {
+    this.checkFlag().then((response) => {
+      this.showNewDesign = response;
+    });
   },
 };
 </script>
