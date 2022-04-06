@@ -11,7 +11,6 @@ import InputText from 'primevue/inputtext';
 import Password from 'primevue/password';
 import ToastService from 'primevue/toastservice';
 import Toast from 'primevue/toast';
-import store  from './store';
 
 Vue.use(PrimeVue);
 Vue.use(ToastService);
@@ -27,6 +26,5 @@ Vue.component('toast', Toast);
 
 new Vue({
   el:'#app',
-  store,
   render: h => h(App),
 }).$mount('#app')

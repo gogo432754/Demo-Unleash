@@ -34,7 +34,7 @@ export default {
         appName: "demo-unleash",
         environment: "dev",
       });
-      unleash.updateContext({ userId: 4 });
+      unleash.updateContext({ userId: 2 });
       await unleash.start().then(() => {
         return unleash.getAllToggles();
       });
