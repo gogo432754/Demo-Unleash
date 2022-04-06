@@ -79,7 +79,7 @@ export default {
   position: relative;
   margin-top: 30vh;
   height: 100%;
-  opacity: 0.95;
+  opacity: 0.5;
 }
 
 .bar {

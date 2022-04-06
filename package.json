@@ -1,0 +1,24 @@
+{
+  "name": "demo-unleash",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gogo432754/Demo-Unleash.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gogo432754/Demo-Unleash/issues"
+  },
+  "homepage": "https://github.com/gogo432754/Demo-Unleash#readme",
+  "dependencies": {
+    "serve": "^13.0.2",
+    "vuex": "^3.6.2"
+  }
+}

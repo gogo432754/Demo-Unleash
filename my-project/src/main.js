@@ -11,8 +11,9 @@ import InputText from 'primevue/inputtext';
 import Password from 'primevue/password';
 import ToastService from 'primevue/toastservice';
 import Toast from 'primevue/toast';
+import store  from './store';
 
-Vue.use(PrimeVue)
+Vue.use(PrimeVue);
 Vue.use(ToastService);
 
 Vue.component("p-button", Button)
@@ -21,9 +22,11 @@ Vue.component("input-text", InputText)
 Vue.component("pass-word", Password)
 // eslint-disable-next-line
 Vue.component('toast', Toast);
-Vue.config.productionTip = false
+//Vue.config.productionTip = false
 
 
 new Vue({
+  el:'#app',
+  store,
   render: h => h(App),
 }).$mount('#app')

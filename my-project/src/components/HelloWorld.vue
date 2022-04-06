@@ -8,6 +8,8 @@
 <script>
 import OldDesign from "./OldDesign.vue";
 import NewDesign from "./newDesign.vue";
+import { UnleashClient } from "unleash-proxy-client";
+
 export default {
   components: { OldDesign, NewDesign },
   name: "HelloWorld",
@@ -23,12 +25,29 @@ export default {
       showNewDesign: true,
     };
   },
+  methods: {
+    checkFlag: async() =>{
+      const unleash = new UnleashClient({
+      url: "http://localhost:3000/proxy",
+      clientKey: "some-secret",
+      refreshInterval: 5,
+      appName: "demo-unleash",
+      environment: "dev",
+    });
+    await unleash.start().then(()=>{
+       this.showNewDesign = unleash.isEnabled('new-design')
+       })
+
+    }
+  },
+  beforeMount:  async () => {
+     await this.checkFlag();
+  },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 h3 {
   margin: 40px 0 0;
 }
