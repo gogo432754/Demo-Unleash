@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <new-design v-if="showNewDesign" />
+    <term v-else-if="term" />
     <old-design v-else />
   </div>
 </template>
@@ -8,21 +9,27 @@
 <script>
 import OldDesign from "./OldDesign.vue";
 import NewDesign from "./newDesign.vue";
+import Term from "./Term.vue";
 import { UnleashClient } from "unleash-proxy-client";
 
 export default {
-  components: { OldDesign, NewDesign },
+  components: {
+    OldDesign,
+    NewDesign,
+    // eslint-disable-next-line
+    Term,
+  },
   name: "HelloWorld",
   props: {
     msg: String,
   },
   component: {
     OldDesign,
-    NewDesign,
   },
   data() {
     return {
-      showNewDesign: true,
+      showNewDesign: false,
+      term: false,
     };
   },
   methods: {
@@ -34,18 +41,27 @@ export default {
         appName: "demo-unleash",
         environment: "dev",
       });
-      unleash.updateContext({ userId: 2 });
+      unleash.updateContext({ userId: 2029 });
       await unleash.start().then(() => {
         return unleash.getAllToggles();
       });
 
-      return unleash.isEnabled("new-design");
+      return unleash.getAllToggles();
     },
   },
 
   mounted() {
     this.checkFlag().then((response) => {
-      this.showNewDesign = response;
+      console.log(response)
+      if (response[0].name == "new-design") {
+        this.showNewDesign = true;
+        this.term = false;
+      }
+      if (response[0].name == "terminator"){
+        this.term = true;
+        this.showNewDesign = false;
+
+      } 
     });
   },
 };
